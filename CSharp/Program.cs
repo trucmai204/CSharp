@@ -3,69 +3,84 @@ using System.Text;
 
 namespace CSharp
 {
-    internal class Program
+    public class Program
     {
-        class Fraction
+        public class Fraction
         {
-            public int numerator;
-            public int denominator;
+            public int Numerator {  get; set; } // get, set giới hạn quyền truy cập
+            public int Denominator {  get; set; }
 
-            static int GreatestCommonDivisor(int a, int b)
+            public void Input() // hàm void thể hiện hèn đụng, ko trẻ vè két quả gì hết
             {
-                while (b != 0)
+                Console.Write("Nhập tử số: ");
+                Numerator = int.Parse(Console.ReadLine());
+                Console.WriteLine("Tử số là: " + Numerator);
+
+                Console.Write("Nhập mẫu số: ");
+                Denominator = int.Parse(Console.ReadLine());
+                Console.WriteLine("Mẫu số là: " + Denominator);
+                Console.WriteLine($"Phân số :  {Numerator}/{Denominator}"); // $ hiện thì nhìu giá trị oke la khong
+            }
+            public Fraction Simplify()
+            {
+                Fraction result = new Fraction();
+                int gcd = GetGreatestCommonDivisor(Numerator, Denominator);
+                result.Numerator = Numerator / gcd;
+                result.Denominator = Denominator / gcd;
+                return result;
+            }
+           
+        }
+        public static int GetGreatestCommonDivisor(int number1, int number2) // tên Hàm trả về Giá trị đặt là Get....
+        { // đặt tên biến có nghĩa
+          //while (b != 0) 
+          //{
+          //    int t = b;
+          //    b = a % b;
+          //    a = t;
+          //}
+          //return a;
+            for (int i = number1; i >= 1; i--)
+            {
+                if (number1 % i == 0 && number2 % i == 0)
                 {
-                    int t = b;
-                    b = a % b;
-                    a = t;
+                    return i;
                 }
-                return a;
             }
-
-            public static Fraction AddNumber(Fraction a, Fraction b)
-            {
-                Fraction resultfraction = new Fraction();
-                resultfraction.numerator = a.numerator * b.denominator + a.denominator * b.numerator;
-                resultfraction.denominator = a.denominator * b.denominator;
-                int gcd = GreatestCommonDivisor(resultfraction.numerator, resultfraction.denominator);
-                resultfraction.numerator /= gcd;
-                resultfraction.denominator /= gcd;
-                return resultfraction;
-            }
+            return 1;
+        }
+        public Fraction GetTotalOf(Fraction frac1, Fraction frac2)
+        {
+            Fraction result = new Fraction();
+            result.Numerator = frac1.Numerator * frac2.Denominator + frac1.Denominator * frac2.Numerator;
+            result.Denominator = frac1.Denominator * frac2.Denominator;
+            
+            return result.Simplify();
         }
 
-
-        static void Main()
+        public void Main()
         {
             Console.OutputEncoding = Encoding.UTF8;// mã hóa sang hỗ trợ tiếng việt
 
             Fraction fraction = new Fraction();
             Fraction fraction2 = new Fraction();
 
-            fraction.numerator = int.Parse(Console.ReadLine());
-            Console.WriteLine("Tử số của phân số thứ nhất là: " + fraction.numerator);
-            fraction.denominator = int.Parse(Console.ReadLine());
-            Console.WriteLine("Mẫu số của phân số thứ nhất là: " + fraction.denominator);
-            Console.WriteLine("Phân số của phân số thứ nhất: " + fraction.numerator + "/" + fraction.denominator);
+            fraction.Input();
+            fraction2.Input();
 
-            fraction2.numerator = int.Parse(Console.ReadLine());
-            Console.WriteLine("Tử số của phân số thứ hai là: " + fraction2.numerator);
-            fraction2.denominator = int.Parse(Console.ReadLine());
-            Console.WriteLine("Mẫu số của phân số thứ nhất là: " + fraction2.denominator);
-            Console.WriteLine("Phân số của phân số thứ nhất: " + fraction2.numerator + "/" + fraction2.denominator);
-
-            Fraction result = Fraction.AddNumber(fraction, fraction2);
-            if (result.denominator == 1)
+            Fraction result = GetTotalOf(fraction, fraction2);
+            if (result.Denominator == 1)
             {
-                Console.WriteLine("Kết quả là: " + result.numerator);
+                Console.WriteLine("Kết quả là: " + result.Numerator);
             }
-            else if (result.denominator == -1)
+            else if (result.Denominator == -1)
             {
-                result.numerator *= -1;
-                Console.WriteLine("Kết quả là: " + result.numerator + "/" + result.denominator);
+                result.Numerator *= -1;
+                Console.WriteLine("Kết quả là: " + result.Numerator + "/" + result.Denominator);
             }
             else
             {
-                Console.WriteLine("Kết quả là: " + result.numerator + "/" + result.denominator);
+                Console.WriteLine("Kết quả là: " + result.Numerator + "/" + result.Denominator);
             }
 
 
