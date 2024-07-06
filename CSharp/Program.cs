@@ -27,7 +27,7 @@ namespace CSharp
                 int gcd = GetGreatestCommonDivisor(Numerator, Denominator);
                 result.Numerator = Numerator / gcd;
                 result.Denominator = Denominator / gcd;
-                return result;
+                return result; 
             }
            
         }
@@ -58,7 +58,7 @@ namespace CSharp
             return result.Simplify();
         }
 
-        public void Main()
+        public static void Main()
         {
             Console.OutputEncoding = Encoding.UTF8;// mã hóa sang hỗ trợ tiếng việt
 
