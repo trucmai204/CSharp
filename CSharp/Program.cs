@@ -49,7 +49,7 @@ namespace CSharp
             }
             return 1;
         }
-        public Fraction GetTotalOf(Fraction frac1, Fraction frac2)
+        public static Fraction GetTotalOf(Fraction frac1, Fraction frac2)
         {
             Fraction result = new Fraction();
             result.Numerator = frac1.Numerator * frac2.Denominator + frac1.Denominator * frac2.Numerator;
