@@ -62,7 +62,7 @@ namespace CSharp
         {
             Console.OutputEncoding = Encoding.UTF8;// mã hóa sang hỗ trợ tiếng việt
 
-            Fraction fraction = new Fraction();
+            Fraction fraction = new Fraction(); 
             Fraction fraction2 = new Fraction();
 
             fraction.Input();
