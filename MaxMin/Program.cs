@@ -17,16 +17,18 @@ namespace MaxMin
             }
             public int GetMaxNumber()
             {
-                int max = int.MinValue;
+                //int max = int.MinValue;
       
-                foreach (var num in inter)
-                {
-                    if (num > max)
-                    {
-                        max = num;
-                    }
-                }
-                return max;
+                //foreach (var num in inter)
+                //{
+                //    if (num > max)
+                //    {
+                //        max = num;
+                //    }
+                //}
+                //return max;
+
+                return inter.OrderByDescending(x => x).FirstOrDefault();
             }
         }
         static void Main(string[] args)
@@ -35,7 +37,7 @@ namespace MaxMin
             Integer number = new Integer();
             number.Input();
             
-            Console.WriteLine("Số lơn nhất trong dãy số là:" +number.GetMaxNumber());
+            Console.WriteLine("Số lơn nhất trong dãy số là: " +number.GetMaxNumber());
         }
     }
 }
